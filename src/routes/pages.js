@@ -1,6 +1,8 @@
 // src/routes/pages.js
 
-const isLoggedIn = require('../middleware.js').isLoggedIn;
+const middleware = require('../middleware.js');
+const isLoggedIn = middleware.isLoggedIn;
+const isReactRoute = middleware.isReactRoute;
 
 module.exports = function route(app, passport) {
 
@@ -31,14 +33,15 @@ module.exports = function route(app, passport) {
     failureFlash: true,
   }));
 
-  // Editor app
-  app.get(/\/app(\/.*)?/, isLoggedIn, (request, response) => {
-    response.render('app', { user: request.user.auth.username });
-  });
-
   // Sign out
   app.get('/signout', (request, response) => {
     request.logout();
     response.redirect('/');
   });
+
+  // Editor app
+  app.get('*', isReactRoute, isLoggedIn, (request, response) => {
+    response.render('app', { user: request.user.auth.username });
+  });
+
 };
