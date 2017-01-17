@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const flash = require('connect-flash');
 const morgan = require('morgan');
+const serveStatic = require('serve-static');
 const session = require('express-session');
 
 const mongoose = require('mongoose');
@@ -35,9 +36,9 @@ passportConfig(passport); // pass passport for configuration
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 // routing
-app.use(express.static(__dirname));
 require('./routes/pages.js')(app, passport);
 require('./routes/api.js')(app, passport);
+app.use(serveStatic(__dirname));
 
 app.listen(port);
 console.log(app.get('env'));
