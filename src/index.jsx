@@ -10,7 +10,7 @@ const store = createStore(reducer);
 
 const routes = (
   <Route path="/app" component={App}>
-    // children
+    <Route path="asdf" component={App} />
   </Route>
 );
 
