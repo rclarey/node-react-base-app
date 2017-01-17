@@ -4,12 +4,9 @@
   "description": "",
   "scripts": {
     "start": "node server",
-    "build": "webpack && npm run compile-sass && npm run move-src && npm run move-rest",
-    "compile-sass": "npm run main-sass && npm run app-sass",
-    "main-sass": "sass --style=compressed --sourcemap=none --no-cache  src/scss/main.scss build/assets/main.css",
-    "app-sass": "sass --style=compressed --sourcemap=none --no-cache  src/scss/app.scss build/assets/app.css",
-    "move-src": "cp -rf src/models/ build/models/ && cp -rf src/routes/ build/routes/ && cp -rf src/views/ build/views/",
-    "move-rest": "cp -rf config/ build/config/ && cp -rf vendor/ build/assets/ && cp -f server.js package.json build/"
+    "build": "webpack && npm run sass && npm run move",
+    "sass": "sass --style=compressed --sourcemap=none --no-cache  src/scss/main.scss build/assets/main.css && sass --style=compressed --sourcemap=none --no-cache  src/scss/app.scss build/assets/app.css",
+    "move": "for f in src/*; do if [ $f != src/components ]&&[ $f != src/redux ]&&[ $f != src/scss ]&&[ $f != src/index.jsx ]; then cp -rf $f build/; fi done; cp -f package.json build/"
   },
   "dependencies": {
     "bcrypt-nodejs": "latest",
