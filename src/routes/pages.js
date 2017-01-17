@@ -1,11 +1,8 @@
 // src/routes/pages.js
 
+const isLoggedIn = require('../middleware.js').isLoggedIn;
+
 module.exports = function route(app, passport) {
-  // isLoggedIn helper
-  function isLoggedIn(request, response, next) {
-    if (request.isAuthenticated()) { return next(); }
-    return response.redirect('/signin');
-  }
 
   // Home page
   app.get('/', (request, response) => {
