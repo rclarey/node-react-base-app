@@ -36,9 +36,9 @@ passportConfig(passport); // pass passport for configuration
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 // routing
-require('./routes/pages.js')(app, passport);
+app.use(serveStatic('./'));
 require('./routes/api.js')(app, passport);
-app.use(serveStatic(__dirname));
+require('./routes/pages.js')(app, passport);
 
 app.listen(port);
 console.log(app.get('env'));
