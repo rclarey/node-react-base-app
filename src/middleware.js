@@ -8,7 +8,8 @@ module.exports = {
   },
 
   isReactRoute(request, response, next) {
-    if(request.path === request.path.match(/\/app(\/(asdf(\/)?)?)?/g)[0]) {
+    const parse = request.path.match(/\/app(\/(asdf(\/)?)?)?/); // parse the path to check if its a valid path
+    if(!!parse && parse[0] === request.path) { // if there is no match, or the match isn't the whole path
       next();
     } else {
       response.status(404).render('404');
