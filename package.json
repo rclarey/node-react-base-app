@@ -19,7 +19,7 @@
     "immutable": "^3.8.1",
     "method-override": "~1.0.0",
     "mongodb": "~2.2.21",
-    "mongoose": "~4.4",
+    "mongoose": "~5.7",
     "morgan": "~1.0.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
